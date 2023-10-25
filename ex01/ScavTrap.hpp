@@ -19,14 +19,17 @@
 
 #include "ClapTrap.hpp"
 
-
-class ScavTrap : public ClapTrap
-{
-public:
-	ScavTrap(const std::string &name);
-
-	~ScavTrap();
+class ScavTrap : public ClapTrap {
+ public:
+  ScavTrap(const std::string &name);
+  ScavTrap(const ScavTrap &obj);
+  ScavTrap &operator=(const ScavTrap &obj);
+  ~ScavTrap();
+  void GuardGate();
+  bool IsGateKeeperMode() const;
+  void SetIsGateKeeperMode(bool is_gate_keeper_mode);
+ private:
+  bool is_gate_keeper_mode_;
 };
-
 
 #endif //EX01_SCAVTRAP_HPP

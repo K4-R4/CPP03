@@ -13,9 +13,22 @@
 //
 // Created by k.t. on 2023/10/20.
 //
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+#include <iostream>
+#include <limits>
 
-int main()
-{
-	return 0;
+int main() {
+  ScavTrap scav_trap("John");
+  scav_trap.Attack("Bob");
+  scav_trap.TakeDamage(1000);
+  scav_trap.TakeDamage(1000);
+  scav_trap.TakeDamage(1000);
+  scav_trap.BeRepaired(1000);
+  scav_trap.BeRepaired(std::numeric_limits<uint>::max());
+  scav_trap.BeRepaired(std::numeric_limits<uint>::max());
+  scav_trap.TakeDamage(1000);
+  scav_trap.TakeDamage(std::numeric_limits<uint>::max());
+  scav_trap.GuardGate();
+  scav_trap.GuardGate();
+  return 0;
 }

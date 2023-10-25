@@ -3,7 +3,7 @@ CXXFLAGS := -g -MMD -MP -Wall -Wextra -Werror -std=c++98
 DFLAGS   := -fsanitize=address -fsanitize=undefined -fsanitize=bounds
 INCLUDE  :=
 NAME     := a.out
-SRCS     := main.cpp
+SRCS     := main.cpp ClapTrap.cpp ScavTrap.cpp
 OBJS     := $(SRCS:.cpp=.o)
 DEPENDS  := $(OBJS:.o=.d)
 

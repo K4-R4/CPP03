@@ -17,16 +17,15 @@
 #include <iostream>
 #include <limits>
 
-int main()
-{
-	ClapTrap clapTrap("John");
-	clapTrap.Attack("Bob");
-	clapTrap.TakeDamage(200);
-	clapTrap.TakeDamage(200);
-	clapTrap.BeRepaired(200);
-	clapTrap.BeRepaired(std::numeric_limits<uint>::max());
-	clapTrap.BeRepaired(std::numeric_limits<uint>::max());
-	clapTrap.TakeDamage(200);
-	clapTrap.TakeDamage(std::numeric_limits<uint>::max() / 2);
-	return 0;
+int main() {
+  ClapTrap clap_trap("John");
+  clap_trap.Attack("Bob");
+  clap_trap.TakeDamage(200);
+  clap_trap.TakeDamage(200);
+  clap_trap.BeRepaired(200);
+  clap_trap.BeRepaired(std::numeric_limits<uint>::max());
+  clap_trap.BeRepaired(std::numeric_limits<uint>::max());
+  clap_trap.TakeDamage(200);
+  clap_trap.TakeDamage(std::numeric_limits<uint>::max() / 2);
+  return 0;
 }
