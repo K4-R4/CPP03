@@ -19,7 +19,7 @@
 
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap {
+class ScavTrap : virtual public ClapTrap {
  public:
   ScavTrap(const std::string &name);
   ScavTrap(const ScavTrap &obj);

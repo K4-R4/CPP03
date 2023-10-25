@@ -40,69 +40,45 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &obj) {
 ClapTrap::~ClapTrap() {
   std::cout << "ClapTrap destructor called" << std::endl;
 }
-const std::string &ClapTrap::GetName() const {
-  return name_;
-}
-void ClapTrap::SetName(const std::string &name) {
-  name_ = name;
-}
-unsigned int ClapTrap::GetHitPoints() const {
-  return hit_points_;
-}
-void ClapTrap::SetHitPoints(unsigned int hit_points) {
-  hit_points_ = hit_points;
-}
-unsigned int ClapTrap::GetEnergyPoints() const {
-  return energy_points_;
-}
-void ClapTrap::SetEnergyPoints(unsigned int energy_points) {
-  energy_points_ = energy_points;
-}
-unsigned int ClapTrap::GetAttackDamage() const {
-  return attack_damage_;
-}
-void ClapTrap::SetAttackDamage(unsigned int attack_damage) {
-  attack_damage_ = attack_damage;
-}
 
 void ClapTrap::Attack(const std::string &target) {
-  if (GetEnergyPoints() <= 0) {
+  if (energy_points_ <= 0) {
 	std::cout << "ClapTrap out of energy! Can't do anything" << std::endl;
 	return;
   }
-  SetEnergyPoints(GetEnergyPoints() - 1);
-  std::cout << "ClapTrap " << GetName() << " attacks " << target << ", causing " << GetAttackDamage()
+  --energy_points_;
+  std::cout << "ClapTrap " << name_ << " attacks " << target << ", causing " << attack_damage_
 			<< " points of damage!" << std::endl;
 }
 
 void ClapTrap::TakeDamage(unsigned int amount) {
-  if (GetHitPoints() == 0) {
+  if (hit_points_ == 0) {
 	std::cout << "ClapTrap is already dead" << std::endl;
 	return;
   }
-  if (GetHitPoints() >= amount)
-	SetHitPoints(GetHitPoints() - amount);
+  if (hit_points_ >= amount)
+	hit_points_ -= amount;
   else
-	SetHitPoints(0);
-  std::cout << "ClapTrap " << GetName() << " has taken " << amount << " points of damage, and now has "
-			<< GetHitPoints()
+	hit_points_ = 0;
+  std::cout << "ClapTrap " << name_ << " has taken " << amount << " points of damage, and now has "
+			<< hit_points_
 			<< " hit points!" << std::endl;
 }
 
 void ClapTrap::BeRepaired(unsigned int amount) {
-  if (GetEnergyPoints() <= 0) {
+  if (energy_points_ <= 0) {
 	std::cout << "ClapTrap out of energy! Can't do anything" << std::endl;
 	return;
   }
-  if (GetHitPoints() == std::numeric_limits<uint>::max()) {
+  if (hit_points_ == std::numeric_limits<uint>::max()) {
 	std::cout << "ClapTrap is fully repaired! No need to heal it anymore" << std::endl;
 	return;
   }
-  if (amount <= std::numeric_limits<uint>::max() - GetHitPoints()) {
-	SetHitPoints(GetHitPoints() + amount);
+  if (amount <= std::numeric_limits<uint>::max() - hit_points_) {
+	hit_points_ += amount;
   } else
-	SetHitPoints(std::numeric_limits<uint>::max());
-  SetEnergyPoints(GetEnergyPoints() - 1);
-  std::cout << "ClapTrap recovered " << amount << " hit points, and now has " << GetHitPoints() << " hit points!"
+	hit_points_ = std::numeric_limits<uint>::max();
+  --energy_points_;
+  std::cout << "ClapTrap recovered " << amount << " hit points, and now has " << hit_points_ << " hit points!"
 			<< std::endl;
 }

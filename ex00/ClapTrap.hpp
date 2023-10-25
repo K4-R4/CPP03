@@ -25,14 +25,6 @@ class ClapTrap {
   ClapTrap(const ClapTrap &obj);
   ClapTrap &operator=(const ClapTrap &obj);
   ~ClapTrap();
-  const std::string &GetName() const;
-  void SetName(const std::string &name);
-  unsigned int GetHitPoints() const;
-  void SetHitPoints(unsigned int hit_points);
-  unsigned int GetEnergyPoints() const;
-  void SetEnergyPoints(unsigned int energy_points);
-  unsigned int GetAttackDamage() const;
-  void SetAttackDamage(unsigned int attack_damage);
   void Attack(const std::string &target);
   void TakeDamage(unsigned int amount);
   void BeRepaired(unsigned int amount);
