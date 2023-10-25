@@ -5,7 +5,10 @@
 #ifndef EX01_EX03_DIAMONDTRAP_HPP_
 #define EX01_EX03_DIAMONDTRAP_HPP_
 
-class DiamondTrap {
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
+
+class DiamondTrap : public ScavTrap, public FragTrap {
 
 };
 
