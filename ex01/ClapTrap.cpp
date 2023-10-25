@@ -18,8 +18,9 @@
 //
 // Created by k.t. on 2023/10/24.
 //
-ClapTrap::ClapTrap(const std::string &name)
-	: name_(name), hit_points_(10), energy_points_(10), attack_damage_(0) {
+ClapTrap::ClapTrap(const std::string &name, unsigned int hit_points, unsigned int energy_points,
+				   unsigned int attack_damage)
+	: name_(name), hit_points_(hit_points), energy_points_(energy_points), attack_damage_(attack_damage) {
   std::cout << "ClapTrap constructor called" << std::endl;
 }
 

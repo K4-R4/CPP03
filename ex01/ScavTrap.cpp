@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkuramot <tkuramot@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/20 12:48:04 by tkuramot          #+#    #+#             */
-/*   Updated: 2023/10/21 11:58:52 by tkuramot         ###   ########.fr       */
+/*   Created: 2023/10/24 22:39:15 by tkuramot          #+#    #+#             */
+/*   Updated: 2023/10/24 22:39:15 by tkuramot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //
-// Created by k.t. on 2023/10/20.
+// Created by k.t. on 2023/10/24.
 //
-#include "ClapTrap.hpp"
-#include <iostream>
-#include <limits>
 
-int main()
+#include "ScavTrap.hpp"
+#include <iostream>
+
+ScavTrap::ScavTrap(const std::string &name) : ClapTrap(name, 100, 50, 20)
 {
-	ClapTrap clapTrap("John");
-	clapTrap.Attack("Bob");
-	clapTrap.TakeDamage(200);
-	clapTrap.TakeDamage(200);
-	clapTrap.BeRepaired(200);
-	clapTrap.BeRepaired(std::numeric_limits<uint>::max());
-	clapTrap.BeRepaired(std::numeric_limits<uint>::max());
-	clapTrap.TakeDamage(200);
-	clapTrap.TakeDamage(std::numeric_limits<uint>::max() / 2);
-	return 0;
+	std::cout << "ScavTrap constructor called" << std::endl;
+}
+
+ScavTrap::ScavTrap(const ScavTrap &obj) : ClapTrap(obj.m_name, obj.m_hitPoints, obj.m_energyPoints, obj.m_attackDamage)
+{
+}
+
+ScavTrap::~ScavTrap()
+{
+	std::cout << "ScavTrap destructor called" << std::endl;
 }

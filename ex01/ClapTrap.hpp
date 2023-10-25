@@ -21,10 +21,10 @@
 
 class ClapTrap {
  public:
-  ClapTrap(const std::string &name);
+  ClapTrap(const std::string &name, unsigned int hit_points, unsigned int energy_points, unsigned int attack_damage);
   ClapTrap(const ClapTrap &obj);
   ClapTrap &operator=(const ClapTrap &obj);
-  ~ClapTrap();
+  virtual ~ClapTrap();
   const std::string &GetName() const;
   void SetName(const std::string &name);
   unsigned int GetHitPoints() const;
