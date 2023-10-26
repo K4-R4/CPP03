@@ -17,6 +17,10 @@
 #include "DiamondTrap.hpp"
 #include <iostream>
 
+// TODO Frag, Scav copy constructor
 DiamondTrap::DiamondTrap(const std::string &name) : ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name), name_(name) {
   std::cout << "DiamondTrap constructor called" << std::endl;
+  hit_points_ = FragTrap::kDefaultHitPoints;
+  energy_points_ = ScavTrap::kDefaultEnergyPoints;
+  attack_damage_ = FragTrap::kDefaultAttackDamage;
 }

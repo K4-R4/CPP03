@@ -30,6 +30,10 @@ class ScavTrap : virtual public ClapTrap {
   void SetIsGateKeeperMode(bool is_gate_keeper_mode);
  private:
   bool is_gate_keeper_mode_;
+ protected:
+  static const unsigned int kDefaultHitPoints = 100;
+  static const unsigned int kDefaultEnergyPoints = 50;
+  static const unsigned int kDefaultAttackDamage = 20;
 };
 
 #endif //EX01_SCAVTRAP_HPP
