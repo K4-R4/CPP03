@@ -21,12 +21,13 @@ ScavTrap::ScavTrap(const std::string &name) : ClapTrap(name, 100, 50, 20), is_ga
   std::cout << "ScavTrap constructor called" << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &obj) : ClapTrap(obj) {
+ScavTrap::ScavTrap(const ScavTrap &obj) : ClapTrap(obj), is_gate_keeper_mode_(obj.is_gate_keeper_mode_) {
   std::cout << "ScavTrap copy constructor called" << std::endl;
 }
 
 ScavTrap &ScavTrap::operator=(const ScavTrap &obj) {
   ClapTrap::operator=(obj);
+  is_gate_keeper_mode_ = obj.is_gate_keeper_mode_;
   return *this;
 }
 
