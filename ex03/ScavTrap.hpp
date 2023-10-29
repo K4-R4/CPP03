@@ -28,12 +28,13 @@ class ScavTrap : virtual public ClapTrap {
   void GuardGate();
   bool IsGateKeeperMode() const;
   void SetIsGateKeeperMode(bool is_gate_keeper_mode);
+  void Attack(const std::string &target);
  private:
   bool is_gate_keeper_mode_;
  protected:
-  static const unsigned int kDefaultHitPoints = 100;
-  static const unsigned int kDefaultEnergyPoints = 50;
-  static const unsigned int kDefaultAttackDamage = 20;
+  static const unsigned int kDefaultHitPoints;
+  static const unsigned int kDefaultEnergyPoints;
+  static const unsigned int kDefaultAttackDamage;
 };
 
 #endif //EX01_SCAVTRAP_HPP

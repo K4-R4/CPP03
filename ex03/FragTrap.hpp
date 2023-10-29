@@ -25,11 +25,12 @@ class FragTrap : virtual public ClapTrap {
   FragTrap(const FragTrap &obj);
   FragTrap &operator=(const FragTrap &obj);
   ~FragTrap();
+  void Attack(const std::string &target);
   void HighFiveGuys();
  protected:
-  static const unsigned int kDefaultHitPoints = 100;
-  static const unsigned int kDefaultEnergyPoints = 100;
-  static const unsigned int kDefaultAttackDamage = 30;
+  static const unsigned int kDefaultHitPoints;
+  static const unsigned int kDefaultEnergyPoints;
+  static const unsigned int kDefaultAttackDamage;
 };
 
 #endif //EX01_EX02_FRAGTRAP_HPP_

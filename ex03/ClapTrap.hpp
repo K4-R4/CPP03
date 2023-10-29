@@ -22,11 +22,10 @@
 class ClapTrap {
  public:
   ClapTrap(const std::string &name);
-  ClapTrap(const std::string &name, unsigned int hit_points, unsigned int energy_points, unsigned int attack_damage);
   ClapTrap(const ClapTrap &obj);
   ClapTrap &operator=(const ClapTrap &obj);
-  virtual ~ClapTrap();
-  void Attack(const std::string &target);
+  ~ClapTrap();
+  virtual void Attack(const std::string &target);
   void TakeDamage(unsigned int amount);
   void BeRepaired(unsigned int amount);
 
@@ -35,6 +34,7 @@ class ClapTrap {
   unsigned int hit_points_;
   unsigned int energy_points_;
   unsigned int attack_damage_;
+  bool IsAvailable() const;
 };
 
 #endif//EX00_CLAPTRAP_HPP

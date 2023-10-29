@@ -17,8 +17,15 @@
 #include "ScavTrap.hpp"
 #include <iostream>
 
-ScavTrap::ScavTrap(const std::string &name) : ClapTrap(name, 100, 50, 20), is_gate_keeper_mode_(false) {
+const unsigned int ScavTrap::kDefaultHitPoints = 100;
+const unsigned int ScavTrap::kDefaultEnergyPoints = 50;
+const unsigned int ScavTrap::kDefaultAttackDamage = 20;
+
+ScavTrap::ScavTrap(const std::string &name) : ClapTrap(name), is_gate_keeper_mode_(false) {
   std::cout << "ScavTrap constructor called" << std::endl;
+  hit_points_ = 100;
+  energy_points_ = 50;
+  attack_damage_ = 20;
 }
 
 ScavTrap::ScavTrap(const ScavTrap &obj) : ClapTrap(obj), is_gate_keeper_mode_(obj.is_gate_keeper_mode_) {
@@ -28,11 +35,26 @@ ScavTrap::ScavTrap(const ScavTrap &obj) : ClapTrap(obj), is_gate_keeper_mode_(ob
 ScavTrap &ScavTrap::operator=(const ScavTrap &obj) {
   ClapTrap::operator=(obj);
   is_gate_keeper_mode_ = obj.is_gate_keeper_mode_;
+  std::cout << "ScavTrap copy assignment operator called" << std::endl;
   return *this;
 }
 
 ScavTrap::~ScavTrap() {
   std::cout << "ScavTrap destructor called" << std::endl;
+}
+
+void ScavTrap::Attack(const std::string &target) {
+  if (energy_points_ <= 0) {
+	std::cout << "ScavTrap out of energy! Can't do anything" << std::endl;
+	return;
+  }
+  if (hit_points_ <= 0) {
+	std::cout << "ScavTrap is dead! Can't do anything" << std::endl;
+	return;
+  }
+  --energy_points_;
+  std::cout << "ScavTrap " << name_ << " attacks " << target << ", causing " << attack_damage_
+			<< " points of damage!" << std::endl;
 }
 
 bool ScavTrap::IsGateKeeperMode() const {
@@ -44,6 +66,14 @@ void ScavTrap::SetIsGateKeeperMode(bool is_gate_keeper_mode) {
 }
 
 void ScavTrap::GuardGate() {
+  if (energy_points_ <= 0) {
+	std::cout << "ScavTrap out of energy! Can't do anything" << std::endl;
+	return;
+  }
+  if (hit_points_ <= 0) {
+	std::cout << "ScavTrap is dead! Can't do anything" << std::endl;
+	return;
+  }
   if (!IsGateKeeperMode()) {
 	std::cout << "ScavTrap is now in Gate keeper mode!" << std::endl;
 	SetIsGateKeeperMode(true);

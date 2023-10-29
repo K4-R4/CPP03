@@ -32,6 +32,7 @@ DiamondTrap &DiamondTrap::operator=(DiamondTrap const &obj) {
   ClapTrap::operator=(obj);
   ScavTrap::operator=(obj);
   FragTrap::operator=(obj);
+  std::cout << "DiamondTrap copy assignment operator called" << std::endl;
   return *this;
 }
 
@@ -41,4 +42,17 @@ DiamondTrap::~DiamondTrap() {
 
 void DiamondTrap::Attack(const std::string &name) {
   ScavTrap::Attack(name);
+}
+
+void DiamondTrap::WhoAmI() {
+  if (energy_points_ <= 0) {
+	std::cout << "DiamondTrap out of energy! Can't do anything" << std::endl;
+	return;
+  }
+  if (hit_points_ <= 0) {
+	std::cout << "DiamondTrap is dead! Can't do anything" << std::endl;
+	return;
+  }
+  std::cout << "DiamondTrap I am " << name_ << std::endl;
+  std::cout << "ClapTrap I am " << ClapTrap::name_ << std::endl;
 }

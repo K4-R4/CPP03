@@ -17,8 +17,15 @@
 #include "FragTrap.hpp"
 #include <iostream>
 
-FragTrap::FragTrap(const std::string &name) : ClapTrap(name, 100, 100, 30) {
+const unsigned int FragTrap::kDefaultHitPoints = 100;
+const unsigned int FragTrap::kDefaultEnergyPoints = 100;
+const unsigned int FragTrap::kDefaultAttackDamage = 30;
+
+FragTrap::FragTrap(const std::string &name) : ClapTrap(name) {
   std::cout << "FragTrap constructor called" << std::endl;
+  hit_points_ = 100;
+  energy_points_ = 100;
+  attack_damage_ = 30;
 }
 
 FragTrap::FragTrap(const FragTrap &obj) : ClapTrap(obj) {
@@ -27,6 +34,7 @@ FragTrap::FragTrap(const FragTrap &obj) : ClapTrap(obj) {
 
 FragTrap &FragTrap::operator=(const FragTrap &obj) {
   ClapTrap::operator=(obj);
+  std::cout << "FragTrap copy assignment operator called" << std::endl;
   return *this;
 }
 
@@ -34,6 +42,28 @@ FragTrap::~FragTrap() {
   std::cout << "FragTrap destructor called" << std::endl;
 }
 
+void FragTrap::Attack(const std::string &target) {
+  if (energy_points_ <= 0) {
+	std::cout << "FragTrap out of energy! Can't do anything" << std::endl;
+	return;
+  }
+  if (hit_points_ <= 0) {
+	std::cout << "FragTrap is dead! Can't do anything" << std::endl;
+	return;
+  }
+  --energy_points_;
+  std::cout << "FragTrap " << name_ << " attacks " << target << ", causing " << attack_damage_
+			<< " points of damage!" << std::endl;
+}
+
 void FragTrap::HighFiveGuys() {
-  std::cout << "High five!!" << std::endl;
+  if (energy_points_ <= 0) {
+	std::cout << "FragTrap out of energy! Can't do anything" << std::endl;
+	return;
+  }
+  if (hit_points_ <= 0) {
+	std::cout << "FragTrap is dead! Can't do anything" << std::endl;
+	return;
+  }
+  std::cout << "FragTrap High five guys!" << std::endl;
 }
