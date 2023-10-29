@@ -28,6 +28,7 @@ class ScavTrap : public ClapTrap {
   void GuardGate();
   bool IsGateKeeperMode() const;
   void SetIsGateKeeperMode(bool is_gate_keeper_mode);
+  void Attack(const std::string &target);
  private:
   bool is_gate_keeper_mode_;
 };

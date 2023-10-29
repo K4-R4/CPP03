@@ -23,12 +23,6 @@ ClapTrap::ClapTrap(const std::string &name)
   std::cout << "ClapTrap constructor called" << std::endl;
 }
 
-ClapTrap::ClapTrap(const std::string &name, unsigned int hit_points, unsigned int energy_points,
-				   unsigned int attack_damage)
-	: name_(name), hit_points_(hit_points), energy_points_(energy_points), attack_damage_(attack_damage) {
-  std::cout << "ClapTrap constructor called" << std::endl;
-}
-
 ClapTrap::ClapTrap(const ClapTrap &obj)
 	: name_(obj.name_), hit_points_(obj.hit_points_), energy_points_(obj.energy_points_),
 	  attack_damage_(obj.attack_damage_) {
@@ -36,6 +30,7 @@ ClapTrap::ClapTrap(const ClapTrap &obj)
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &obj) {
+  std::cout << "ClapTrap copy assignment operator called" << std::endl;
   name_ = obj.name_;
   hit_points_ = obj.hit_points_;
   energy_points_ = obj.energy_points_;
@@ -48,10 +43,8 @@ ClapTrap::~ClapTrap() {
 }
 
 void ClapTrap::Attack(const std::string &target) {
-  if (energy_points_ <= 0) {
-	std::cout << "ClapTrap out of energy! Can't do anything" << std::endl;
+  if (!IsAvailable())
 	return;
-  }
   --energy_points_;
   std::cout << "ClapTrap " << name_ << " attacks " << target << ", causing " << attack_damage_
 			<< " points of damage!" << std::endl;
@@ -67,15 +60,12 @@ void ClapTrap::TakeDamage(unsigned int amount) {
   else
 	hit_points_ = 0;
   std::cout << "ClapTrap " << name_ << " has taken " << amount << " points of damage, and now has "
-			<< hit_points_
-			<< " hit points!" << std::endl;
+			<< hit_points_ << " hit points!" << std::endl;
 }
 
 void ClapTrap::BeRepaired(unsigned int amount) {
-  if (energy_points_ <= 0) {
-	std::cout << "ClapTrap out of energy! Can't do anything" << std::endl;
+  if (!IsAvailable())
 	return;
-  }
   if (hit_points_ == std::numeric_limits<uint>::max()) {
 	std::cout << "ClapTrap is fully repaired! No need to heal it anymore" << std::endl;
 	return;
@@ -87,4 +77,16 @@ void ClapTrap::BeRepaired(unsigned int amount) {
   --energy_points_;
   std::cout << "ClapTrap recovered " << amount << " hit points, and now has " << hit_points_ << " hit points!"
 			<< std::endl;
+}
+
+bool ClapTrap::IsAvailable() const {
+  if (energy_points_ <= 0) {
+	std::cout << "ClapTrap out of energy! Can't do anything" << std::endl;
+	return false;
+  }
+  if (hit_points_ <= 0) {
+	std::cout << "ClapTrap is dead! Can't do anything" << std::endl;
+	return false;
+  }
+  return true;
 }

@@ -34,6 +34,7 @@ class ClapTrap {
   unsigned int hit_points_;
   unsigned int energy_points_;
   unsigned int attack_damage_;
+  bool IsAvailable() const;
 };
 
 #endif//EX00_CLAPTRAP_HPP

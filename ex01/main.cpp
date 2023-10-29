@@ -18,17 +18,71 @@
 #include <limits>
 
 int main() {
-  ScavTrap scav_trap("John");
-  scav_trap.Attack("Bob");
-  scav_trap.TakeDamage(1000);
-  scav_trap.TakeDamage(1000);
-  scav_trap.TakeDamage(1000);
-  scav_trap.BeRepaired(1000);
-  scav_trap.BeRepaired(std::numeric_limits<uint>::max());
-  scav_trap.BeRepaired(std::numeric_limits<uint>::max());
-  scav_trap.TakeDamage(1000);
-  scav_trap.TakeDamage(std::numeric_limits<uint>::max());
-  scav_trap.GuardGate();
-  scav_trap.GuardGate();
+  {
+	std::cout << std::endl;
+	std::cout << "===========================NORMAL TEST===========================" << std::endl;
+	std::cout << "===========================ATTACK===========================" << std::endl;
+	ScavTrap tmp("Taro");
+	ScavTrap scav_trap(tmp);
+	scav_trap = tmp;
+	scav_trap.Attack("Jiro");
+	scav_trap.Attack("Saburo");
+	std::cout << "===========================DAMAGE===========================" << std::endl;
+	scav_trap.TakeDamage(2);
+	scav_trap.TakeDamage(3);
+	std::cout << "===========================REPAIR===========================" << std::endl;
+	scav_trap.BeRepaired(2);
+	scav_trap.BeRepaired(10);
+	std::cout << "===========================GUARD GATE===========================" << std::endl;
+	scav_trap.GuardGate();
+	scav_trap.GuardGate();
+  }
+  {
+	std::cout << std::endl;
+	std::cout << "===========================ENERGY TEST===========================" << std::endl;
+	std::cout << "===========================ATTACK===========================" << std::endl;
+	ScavTrap scav_trap("Taro");
+	for (int i = 0; i < 51; ++i) {
+	  scav_trap.Attack("Jiro");
+	}
+	std::cout << "===========================DAMAGE===========================" << std::endl;
+	scav_trap.TakeDamage(2);
+	scav_trap.TakeDamage(3);
+	std::cout << "===========================REPAIR===========================" << std::endl;
+	scav_trap.BeRepaired(2);
+	std::cout << "===========================GUARD GATE===========================" << std::endl;
+	scav_trap.GuardGate();
+	scav_trap.GuardGate();
+  }
+  {
+	std::cout << std::endl;
+	std::cout << "===========================HP TEST1===========================" << std::endl;
+	std::cout << "===========================ATTACK===========================" << std::endl;
+	ScavTrap scav_trap("Taro");
+	std::cout << "===========================DAMAGE===========================" << std::endl;
+	scav_trap.TakeDamage(std::numeric_limits<uint>::max());
+	scav_trap.TakeDamage(30);
+	std::cout << "===========================REPAIR===========================" << std::endl;
+	scav_trap.BeRepaired(2);
+	scav_trap.BeRepaired(2);
+	std::cout << "===========================GUARD GATE===========================" << std::endl;
+	scav_trap.GuardGate();
+	scav_trap.GuardGate();
+  }
+  {
+	std::cout << std::endl;
+	std::cout << "===========================HP TEST2===========================" << std::endl;
+	std::cout << "===========================ATTACK===========================" << std::endl;
+	ScavTrap scav_trap("Taro");
+	std::cout << "===========================DAMAGE===========================" << std::endl;
+	scav_trap.TakeDamage(2);
+	std::cout << "===========================REPAIR===========================" << std::endl;
+	scav_trap.BeRepaired(2);
+	scav_trap.BeRepaired(std::numeric_limits<uint>::max());
+	scav_trap.BeRepaired(std::numeric_limits<uint>::max());
+	std::cout << "===========================GUARD GATE===========================" << std::endl;
+	scav_trap.GuardGate();
+	scav_trap.GuardGate();
+  }
   return 0;
 }
